@@ -15,11 +15,6 @@ def conectar():
 # Configuração da página
 st.set_page_config(page_title="Tao Metrics", layout="centered", initial_sidebar_state="collapsed")
 
-# Inicializa variáveis de sessão
-if "logado" not in st.session_state:
-    st.session_state.logado = False
-    st.session_state.usuario = None
-
 # CSS para visual moderno
 st.markdown("""
     <style>
@@ -57,22 +52,12 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Topo direito com nome do usuário e botão sair (ou botão login)
+# Topo direito sem a opção de "Sair"
 st.markdown("""
     <div class="top-right-container">
+        <!-- Não há mais a opção de "Sair" -->
+    </div>
 """, unsafe_allow_html=True)
-
-if st.session_state.logado:
-    st.markdown(f"<span>👤 <b>{st.session_state.usuario}</b></span>", unsafe_allow_html=True)
-    if st.button("🚪 Sair", key="btn_sair"):
-        st.session_state.logado = False
-        st.session_state.usuario = None
-        st.rerun()
-else:
-    if st.button("🔐 Login / Cadastro", key="btn_login"):
-        st.switch_page("pages/taocadastro.py")
-
-st.markdown("</div>", unsafe_allow_html=True)
 
 # Título com logo à direita (usando colunas Streamlit)
 col_logo, col_title = st.columns([1, 4])
@@ -129,28 +114,3 @@ st.markdown("#### 👥 Colaboradores no GitHub")
 st.markdown("- Matheus Bisneto: github.com/matheusbisneto")
 st.markdown("- Gustavo P. Reis: github.com/Gustavo-P-Reis")
 st.markdown("- Wendell  Matias: github.com/Mendell")
-
-# Se o usuário estiver logado, permitir envio de feedback
-if st.session_state.logado:
-    st.markdown("#### 💬 Enviar Feedback")
-    feedback_text = st.text_area("Deixe seu feedback sobre o TAO Metrics:")
-
-    if st.button("📨 Enviar Feedback"):
-        if feedback_text.strip() == "":
-            st.warning("Por favor, digite uma mensagem antes de enviar.")
-        else:
-            try:
-                conn = conectar()
-                cur = conn.cursor()
-                cur.execute(
-                    "INSERT INTO feedbacks (usuario_id, mensagem, enviado_em) VALUES (%s, %s, %s)",
-                    (st.session_state.usuario_id, feedback_text, datetime.utcnow())
-                )
-                conn.commit()
-                cur.close()
-                conn.close()
-                st.success("✅ Feedback enviado com sucesso!")
-            except Exception as e:
-                st.error(f"Erro na conexão com o banco de dados: {e}")
-else:
-    st.markdown("⚠️ Faça login para enviar feedbacks.")
