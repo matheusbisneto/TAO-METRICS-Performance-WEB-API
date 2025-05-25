@@ -1,14 +1,10 @@
 from googleapiclient.discovery import build
-from dotenv import load_dotenv
-import os
-
-# Carrega variáveis do arquivo .env na inicialização do módulo
-load_dotenv()
+import streamlit as st
 
 def get_api_key():
-    api_key = os.getenv("YOUTUBE_API_KEY")
+    api_key = st.secrets["youtube"]["YOUTUBE_API_KEY"]
     if not api_key:
-        raise ValueError("A chave da API do YouTube não está configurada no .env")
+        raise ValueError("A chave da API do YouTube não está configurada nos secrets do Streamlit")
     return api_key
 
 def buscar_canal_youtube(nome_canal):
