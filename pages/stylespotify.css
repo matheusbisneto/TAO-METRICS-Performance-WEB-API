@@ -1,0 +1,144 @@
+/* === BACKGROUND & GERAL === */
+body {
+    background-color: transparent;
+    color: #ffffff;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+.stApp {
+    background-color: transparent;
+    padding: 2rem;
+}
+
+h1, h2, h3, h4 {
+    color: #1DB954;
+    text-shadow: 0 0 5px #1DB954;
+}
+
+/* === INPUTS E BOTÕES === */
+input, .stTextInput input {
+    background-color: rgba(255, 255, 255, 0.1); /* leve transparência clara */
+    color: #000000; /* texto escuro para legibilidade em fundo claro */
+    border: 1px solid #1DB954;
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 1rem;
+    box-shadow: 0 0 8px rgba(29, 185, 84, 0.3);
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 12px #1DB954;
+}
+
+button, .stButton button {
+    background-color: #1DB954;
+    color: #000000;
+    border: none;
+    border-radius: 12px;
+    padding: 0.6rem 1.2rem;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 0 10px #1DB954;
+    transition: all 0.3s ease;
+}
+
+button:hover, .stButton button:hover {
+    background-color: #1ed760;
+    box-shadow: 0 0 15px #1ed760;
+    transform: scale(1.03);
+}
+
+/* === EXPANDERS === */
+.st-expander {
+    background-color: rgba(255, 255, 255, 0.05); /* leve fundo branco transparente */
+    border: 1px solid #333;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+}
+
+.st-expander summary {
+    color: #1DB954;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* === IMAGENS E ÁLBUNS === */
+img {
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(29, 185, 84, 0.2);
+    margin-bottom: 15px;
+}
+
+div[data-testid="stImage"] {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-bottom: 1rem;
+}
+
+/* === GRÁFICOS === */
+.stPlotlyChart, .stImage, .stPyplot {
+    background-color: rgba(255, 255, 255, 0.1); /* fundo translúcido */
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    margin-top: 15px;
+}
+
+/* === AUDIOS === */
+audio {
+    width: 100%;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+/* === RODAPÉ E MARCA D'ÁGUA === */
+footer, .stMarkdown, .stCaption {
+    color: #888;
+    font-size: 0.9em;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* === DETALHES DOS TEXTOS (popularidade, seguidores, etc) === */
+.stats-icon {
+    margin-right: 5px;
+    color: #1DB954;
+}
+
+.stats-text {
+    font-size: 1rem;
+    color: #ccc;
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+/* === DISCOS / COLUNAS === */
+div[data-testid="column"] {
+    display: flex !important;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* === EFEITO NO TÍTULO DO ARTISTA === */
+h1 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* === GÊNEROS === */
+.genre-tag {
+    display: inline-block;
+    background-color: rgba(51, 51, 51, 0.6);
+    color: #1DB954;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin: 4px 6px 0 0;
+}
