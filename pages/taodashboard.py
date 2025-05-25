@@ -4,18 +4,37 @@ import plotly.express as px
 from apis.youtube_api import buscar_canal_youtube, buscar_videos_do_canal
 from apis.twitch_api import buscar_dados_completos
 
+# Função para salvar URL no banco de dados (você pode ajustar conforme necessário)
+def salvar_url(url):
+    # Lógica para salvar a URL no banco ou em uma lista
+    # Aqui é apenas um exemplo simples, mas você pode adaptar para o seu banco de dados
+    if url not in st.session_state.urls_salvas:
+        st.session_state.urls_salvas.append(url)
+        return True
+    return False
+
 # Layout e título
 st.set_page_config(page_title="TAO Dashboard", layout="wide")
 st.title(f"📊 TAO Dashboard")
 
+# Inicializa a lista de URLs salvas
+if "urls_salvas" not in st.session_state:
+    st.session_state.urls_salvas = []
+
 # Campo para adicionar novo canal
 url_canal = st.text_input("🔗 Cole a URL do canal (Twitch ou YouTube):")
-titulo_canal = st.text_input("📝 Título para este canal (opcional):")
+
+# Botão para salvar URL
+if st.button("Salvar URL do Canal"):
+    if url_canal and salvar_url(url_canal):
+        st.success(f"Canal {url_canal} salvo com sucesso!")
+    elif not url_canal:
+        st.error("Por favor, insira uma URL válida.")
 
 # Exibir dados e gráficos para os canais inseridos
 dados_canais = []
 
-if url_canal:
+for url_canal in st.session_state.urls_salvas:
     if "twitch.tv" in url_canal:
         nome_canal = url_canal.rstrip('/').split('/')[-1]
         dados = buscar_dados_completos(nome_canal.lower())
