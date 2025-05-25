@@ -1,11 +1,8 @@
-import os
-from dotenv import load_dotenv
+import streamlit as st
 import requests
 
-load_dotenv()  # carrega as variáveis do .env
-
-CLIENT_ID = os.getenv("TWITCH_CLIENT_ID")
-OAUTH_TOKEN = os.getenv("TWITCH_OAUTH_TOKEN")
+CLIENT_ID = st.secrets["twitch"]["TWITCH_CLIENT_ID"]
+OAUTH_TOKEN = st.secrets["twitch"]["TWITCH_OAUTH_TOKEN"]
 
 HEADERS = {
     'Client-ID': CLIENT_ID,
