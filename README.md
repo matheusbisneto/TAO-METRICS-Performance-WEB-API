@@ -47,12 +47,13 @@ TAO-Metrics/
 │   └── twitch_api.py
 ├── imagens/            # Imagens usadas na interface
 ├── pages/              # Páginas adicionais para navegação Streamlit
-├── style.py            # Estilo global do dashboard
-├── styletwitch.py      # Estilo específico para análises Twitch
-├── taocadastro.py      # Página de login/cadastro
-├── taodashboard.py     # Dashboard principal (autenticado)
-├── taometrics.py       # Página inicial do projeto
-├── taospotify.py       # Página de análise de performance no Spotify
-├── taotwitch.py        # Página de análise Twitch
-├── taoyoutube.py       # Página de análise YouTube
+│ ├──style.py            # Estilo global do dashboard
+│ ├──styletwitch.py      # Estilo específico para análises Twitch
+│ ├──taocadastro.py      # Página de login/cadastro
+│ ├──taodashboard.py     # Dashboard principal (autenticado)
+│ ├──taometrics.py       # Página inicial do projeto
+│ ├──taospotify.py       # Página de análise de performance no Spotify
+│ ├──taotwitch.py        # Página de análise Twitch
+│ ├── taoyoutube.py       # Página de análise YouTube
+├── taometcis.py        # Página principal
 └── .gitignore          # Arquivos e pastas ignoradas no Git
