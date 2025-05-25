@@ -1,13 +1,11 @@
-import os
-from dotenv import load_dotenv
 import streamlit as st
 import requests
 import base64
+import matplotlib.pyplot as plt  
 
-load_dotenv()  # Carrega variáveis do .env
-
-CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
-CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
+# Utilizando o st.secrets para carregar as credenciais
+CLIENT_ID = st.secrets["spotify"]["SPOTIFY_CLIENT_ID"]
+CLIENT_SECRET = st.secrets["spotify"]["SPOTIFY_CLIENT_SECRET"]
 
 def gerar_token(client_id, client_secret):
     auth = f"{client_id}:{client_secret}"
@@ -54,12 +52,12 @@ def buscar_discografia_completa(artista_id, token, tipo="album,single"):
     r = requests.get(url, headers=headers, params=params).json()
     return r.get("items", [])
 
-# --- Aqui o ajuste para imagem e título lado a lado ---
-col_img, col_title = st.columns([1, 8])
-with col_img:
-    st.image("imagens/taospotify.svg", width=100)  # Ajuste a largura que preferir
-with col_title:
-    st.markdown("<h1 style='margin:0; padding-top:10px;'>TAO Analytics Spotify </h1>", unsafe_allow_html=True)
+# === INTERFACE ===
+st.set_page_config(page_title="Spotify Explorer", layout="centered")
+st.title("🔍 Buscador de Artistas no Spotify")
+
+with open("pages/stylespotify.css", encoding="utf-8") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 artista_nome = st.text_input("Digite o nome do artista")
 
@@ -89,15 +87,21 @@ if st.button("Buscar") and artista_nome:
                     analise = buscar_analise_musica(m["id"], token)
                     if analise and "danceability" in analise:
                         st.markdown("**🎚️ Análise de Áudio**")
-                        st.write({
-                            "🎶 Dançabilidade": analise.get("danceability"),
-                            "💥 Energia": analise.get("energy"),
-                            "🎭 Valência (felicidade)": analise.get("valence"),
-                            "🎧 Acústica": analise.get("acousticness"),
-                            "⚡ BPM": analise.get("tempo")
-                        })
-                    else:
-                        st.warning("❌ Não foi possível obter a análise de áudio desta música.")
+                        labels = ["Dançabilidade", "Energia", "Valência", "Acústica", "BPM"]
+                        valores = [
+                            analise.get("danceability", 0),
+                            analise.get("energy", 0),
+                            analise.get("valence", 0),
+                            analise.get("acousticness", 0),
+                            analise.get("tempo", 0)
+                        ]
+
+                        fig, ax = plt.subplots()
+                        ax.bar(labels, valores, color="#1DB954")
+                        ax.set_ylim([0, max(valores) * 1.2])
+                        ax.set_ylabel("Valor")
+                        ax.set_title("Análise de Áudio")
+                        st.pyplot(fig)
 
             # Discografia completa
             with st.expander("📀 Discografia Completa"):
@@ -114,5 +118,3 @@ if st.button("Buscar") and artista_nome:
                     st.markdown(f"**{rel['name']}** — Popularidade: {rel['popularity']}")
                     if rel.get("images"):
                         st.image(rel["images"][0]["url"], width=100)
-
-st.caption("🔗 Feito com a API do Spotify e Streamlit.")
