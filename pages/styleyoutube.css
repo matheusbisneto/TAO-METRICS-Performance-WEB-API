@@ -1,0 +1,146 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Remove margem entre o topo e o container principal */
+.container {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Garante que a header encoste no topo da div container */
+.header {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Estilo do ícone redondo corretamente */
+.header img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    margin-right: 30px;
+    border: 3px solid rgb(255, 69, 69);
+}
+
+.nome-canal {
+    font-size: 32px;
+    font-weight: bold;
+    color: #222 !important;
+    text-shadow: none;
+}
+
+/* Grid de informações */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* Cards de info */
+.info-card {
+    background: rgba(100, 100, 100, 0.05);
+    padding: 25px 20px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow:
+        4px 4px 10px rgba(0, 0, 0, 0.1),
+        -4px -4px 10px rgba(255, 255, 255, 0.1);
+    color: #111;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+}
+
+.info-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        6px 6px 18px rgba(0, 0, 0, 0.2),
+        -6px -6px 18px rgba(255, 255, 255, 0.2);
+}
+
+.info-title {
+    font-size: 18px;
+    color: #444 !important;
+    margin-bottom: 8px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.info-title::before {
+    content: attr(data-icon);
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 24px;
+    vertical-align: middle;
+    color: #06d6a0;
+    font-weight: 700;
+}
+
+.info-value {
+    font-size: 36px;
+    color: #111 !important;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    margin-top: 5px;
+    user-select: text;
+    text-shadow: none;
+}
+
+.info-value[style] {
+    font-size: 14px !important;
+    color: #666 !important;
+}
+
+input, select, button {
+    background-color: rgba(200, 200, 200, 0.15) !important;
+    color: #111 !important;
+    border: 1px solid rgba(120, 120, 120, 0.3) !important;
+    border-radius: 5px !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #111 !important;
+}
+
+.js-plotly-plot {
+    background-color: rgba(200, 200, 200, 0.1) !important;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.5);
+    border-radius: 20px;
+}
+
+a {
+    color: #06d6a0 !important;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+[data-testid="stSidebar"] {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: #111 !important;
+}
+
+.css-1d391kg {
+    border: none !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    body { background-color: #0E1117 !important; }
+    .nome-canal, h1, h2, h3, .info-value { color: #ffffff !important; }
+}

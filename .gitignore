@@ -1,0 +1,21 @@
+# Ignorar todas as pastas env em qualquer lugar do projeto
+**/env/
+
+# Ignorar a pasta venv
+venv/
+
+# Arquivos de ambiente (variáveis secretas)
+.env
+
+# Cache do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Documentação (se você quiser ignorar essa pasta)
+documentação/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db

@@ -65,3 +65,10 @@ Item	Papel
 2025PM/	Pasta principal do projeto
 venv/	Ambiente isolado de bibliotecas
 taometrics.py	Seu aplicativo web feito em Python + Streamlit
+
+
+MOTIVO DE NAO USAR SCRAPPING
+⚠️ Aviso Legal e Técnico
+Violação de Termos de Uso: Scraping de sites como Instagram viola os Termos de Serviço da plataforma, podendo acarretar bloqueio de IP, contas ou até ações legais em projetos comerciais.
+
+Bloqueios técnicos: O Instagram usa JavaScript dinâmico, cookies, headers específicos e verificações anti-bot (como reCAPTCHA). Isso torna o scraping mais difícil que o normal.
