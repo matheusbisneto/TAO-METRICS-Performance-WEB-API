@@ -4,16 +4,6 @@ import plotly.express as px
 from apis.youtube_api import buscar_canal_youtube, buscar_videos_do_canal
 from apis.twitch_api import buscar_dados_completos
 
-# Inicializa session_state para evitar erros de atributo
-if "logado" not in st.session_state:
-    st.session_state.logado = False
-
-# Se não estiver logado, pedir para entrar
-if not st.session_state.logado:
-    st.warning("❌ Você precisa estar logado para acessar o TAO Dashboard.")
-    st.write("Por favor, faça login na página de acesso.")
-    st.stop()
-
 # Layout e título
 st.set_page_config(page_title="TAO Dashboard", layout="wide")
 st.title(f"📊 TAO Dashboard")
