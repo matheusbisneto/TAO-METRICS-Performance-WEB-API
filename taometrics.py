@@ -1,19 +1,15 @@
 import streamlit as st
 from datetime import datetime
 import psycopg2
-from dotenv import load_dotenv
 import os
-
-# Carrega o .env
-load_dotenv()
 
 def conectar():
     return psycopg2.connect(
-        host=os.getenv("DB_HOST"),
-        dbname=os.getenv("DB_NAME"),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASS"),
-        port=os.getenv("DB_PORT")
+        host=st.secrets["general"]["DB_HOST"],
+        dbname=st.secrets["general"]["DB_NAME"],
+        user=st.secrets["general"]["DB_USER"],
+        password=st.secrets["general"]["DB_PASS"],
+        port=st.secrets["general"]["DB_PORT"]
     )
 
 # Configuração da página
@@ -71,7 +67,7 @@ if st.session_state.logado:
     if st.button("🚪 Sair", key="btn_sair"):
         st.session_state.logado = False
         st.session_state.usuario = None
-        st.experimental_rerun()
+        st.rerun()
 else:
     if st.button("🔐 Login / Cadastro", key="btn_login"):
         st.switch_page("pages/taocadastro.py")
