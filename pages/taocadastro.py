@@ -2,11 +2,7 @@ import streamlit as st
 import psycopg2
 import bcrypt
 import datetime
-from dotenv import load_dotenv
 import os
-
-# Carrega o .env
-load_dotenv()
 
 # 📌 Sessão inicial
 if "logado" not in st.session_state:
@@ -18,11 +14,11 @@ if "usuario_id" not in st.session_state:
 # 🔐 Conectar ao banco de dados PostgreSQL
 def conectar():
     return psycopg2.connect(
-        host=os.getenv("DB_HOST"),
-        dbname=os.getenv("DB_NAME"),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASS"),
-        port=os.getenv("DB_PORT")
+        host=st.secrets["general"]["DB_HOST"],
+        dbname=st.secrets["general"]["DB_NAME"],
+        user=st.secrets["general"]["DB_USER"],
+        password=st.secrets["general"]["DB_PASS"],
+        port=st.secrets["general"]["DB_PORT"]
     )
 
 # 🔒 Verifica senha com bcrypt
