@@ -54,7 +54,15 @@ def buscar_discografia_completa(artista_id, token, tipo="album,single"):
 
 # === INTERFACE ===
 st.set_page_config(page_title="Spotify Explorer", layout="centered")
-st.title("🔍 Buscador de Artistas no Spotify")
+
+# Layout com imagem à esquerda e texto à direita
+col_img, col_text = st.columns([1, 8])
+
+with col_img:
+    st.image("imagens/taospotify.svg", width=100)  # Ajuste a largura para o tamanho desejado
+
+with col_text:
+    st.title("Buscador de Artistas no Spotify")
 
 with open("pages/stylespotify.css", encoding="utf-8") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
